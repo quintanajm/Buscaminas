@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -20,14 +21,12 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         
-        GridPane grid = new GridPane();
-        var scene = new Scene(grid,450,600);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(0, 10, 0, 10));
+        StackPane root = new StackPane ();
+        var scene = new Scene(root,450,600);
         stage.setScene(scene);
         stage.show();
-        
+        Tablero tablero = new Tablero ();
+        root.getChildren().add(tablero);
 
     }
 
