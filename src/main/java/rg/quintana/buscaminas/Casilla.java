@@ -18,7 +18,7 @@ public class Casilla extends Group{
         Rectangle rectCasillaSinLev = new Rectangle ();
         rectCasillaSinLev.setWidth(30);
         rectCasillaSinLev.setHeight(30);
-        rectCasillaSinLev.setFill(Color.RED);
+        rectCasillaSinLev.setFill(Color.GRAY);
         this.getChildren().add(rectCasillaSinLev);
     }
 }
