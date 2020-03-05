@@ -6,7 +6,8 @@
 package rg.quintana.buscaminas;
 
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -14,12 +15,16 @@ import javafx.scene.shape.Rectangle;
  * @author josem
  */
 public class Casilla extends Group{
+    static final short TAM_CASILLA = 30;
+    Image casillaImg = new Image(getClass().getResourceAsStream("/Images/casilla.PNG"));
+    ImageView ImgCasilla = new ImageView (casillaImg);
     public Casilla() {
+        ImgCasilla.setFitHeight(TAM_CASILLA);
+        ImgCasilla.setFitWidth(TAM_CASILLA);
         Rectangle rectCasillaSinLev = new Rectangle ();
-        rectCasillaSinLev.setWidth(30);
-        rectCasillaSinLev.setHeight(30);
-        rectCasillaSinLev.setFill(Color.GRAY);
+
         this.getChildren().add(rectCasillaSinLev);
+        this.getChildren().add(ImgCasilla);
     }
 }
 
