@@ -22,7 +22,14 @@ public class Tablero extends GridPane{
             System.out.println("Columna: " + columna);
             int clicY = (int)mouseEvent.getY();
             int fila = clicY / Casilla.TAM_CASILLA;
-            System.out.println("Fila: " + fila);
+            System.out.println("Fila: " + fila); 
+
+            DeteccionBomba(clicX,clicY,columna,fila);
         });
+    }
+    public void DeteccionBomba (int clicX, int clicY, int columna, int fila){
+        if(LogicaBuscaminas.cuadricula[fila][columna]=='1') {
+                System.out.println("boom");
+        }
     }
 }

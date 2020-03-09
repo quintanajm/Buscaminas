@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class LogicaBuscaminas {
     
-    char[][] cuadricula = new char[8][8];
+    static char[][] cuadricula = new char[8][8];
     
     public LogicaBuscaminas() {
         for(int f=0; f<8; f++) {
@@ -15,12 +15,13 @@ public class LogicaBuscaminas {
             }
         } 
         //un for para dibujar las bombas de manera aleatoria a lo largo de la cuadricula  
-        for(double j=0; j<10; j++) {
+        for(int j=0; j<10; j++) {
                 Random random = new Random ();
                 int numeroF = random.nextInt(8);
                 int numeroC = random.nextInt(8);
 
                 cuadricula[numeroF][numeroC] = '1';
+
             }
     }
     public void mostrarConsola() {

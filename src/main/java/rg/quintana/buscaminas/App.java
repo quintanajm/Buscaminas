@@ -21,7 +21,6 @@ public class App extends Application {
         root.getChildren().add(tablero);
         LogicaBuscaminas LogicaBuscaminas = new LogicaBuscaminas();
         LogicaBuscaminas.mostrarConsola();
-//        LogicaBuscaminas.getBombaColocar();
     }
 
     public static void main(String[] args) {
