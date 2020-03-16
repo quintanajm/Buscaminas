@@ -1,4 +1,4 @@
-
+    
 package rg.quintana.buscaminas;
 
 import java.util.Random;
@@ -6,6 +6,7 @@ import java.util.Random;
 public class LogicaBuscaminas {
     
     static char[][] cuadricula = new char[8][8];
+
     
     public LogicaBuscaminas() {
         for(int f=0; f<8; f++) {
@@ -15,12 +16,13 @@ public class LogicaBuscaminas {
         } 
         //un for para dibujar las bombas de manera aleatoria a lo largo de la cuadricula  
         for(int j=0; j<10; j++) {
-                Random random = new Random ();
-                int numeroF = random.nextInt(8);
-                int numeroC = random.nextInt(8);
-                cuadricula[numeroF][numeroC] = '*';
+            Random random = new Random ();
+            int numeroF = random.nextInt(8);
+            int numeroC = random.nextInt(8);
+            cuadricula[numeroF][numeroC] = '*';
         }
     }
+    
     public void mostrarConsola() {
         for(int f=0; f<8; f++) {
             for(int c=0; c<8; c++) {
@@ -29,21 +31,21 @@ public class LogicaBuscaminas {
             System.out.println("");
         }        
     }
-    public int getNumBombasLinea(int fila, int columna) {
-        int bomba = cuadricula[fila][columna];
-        int contadorBombasLinea = 1;
-        int i=1;
+    public int getNumBombasLinea(int f, int c) {
+        int contadorBombasLinea = 0; 
         try {
-           if(cuadricula[fila][columna+i] == bomba) {
+            if(cuadricula[f][c+1] == '*') {
                 contadorBombasLinea++;
-                i++;
-                System.out.println("Bombas en linea:" + contadorBombasLinea);
+                
             }
         } catch(Exception e) {
             
         }
+           System.out.println("Bombas a la derecha:" + contadorBombasLinea + "," + f + "," + c );
         return contadorBombasLinea;
 //        tengo que hacer un if
     }
+    //lo mismo para todos los lados
+    //meterlo todo n el mismo metodo.
 }
-        
+            
