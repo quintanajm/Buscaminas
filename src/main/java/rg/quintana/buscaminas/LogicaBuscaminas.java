@@ -31,21 +31,75 @@ public class LogicaBuscaminas {
             System.out.println("");
         }        
     }
-    public int getNumBombasLinea(int f, int c) {
-        int contadorBombasLinea = 0; 
+//    public int getNumBombasLineaDerecha(int f, int c) {
+//        int contadorBombasLinea = 0; 
+//        try {
+//            if(cuadricula[f][c+1] == '*') {
+//                contadorBombasLinea++;
+//                
+//            }
+//            
+//        } catch(Exception e) {
+//            
+//        }
+//           System.out.println("Bombas a la derecha:" + contadorBombasLinea + "," + f + "," + c );
+//        return contadorBombasLinea;
+//    }
+//        public int getNumBombasLineaIzquierda(int f, int c) {
+//        int contadorBombasLinea = 0; 
+//        try {
+//            if(cuadricula[f][c-1] == '*') {
+//                contadorBombasLinea++;
+//                
+//            }
+//            
+//        } catch(Exception e) {
+//            
+//        }
+//           System.out.println("Bombas a la izquierda:" + contadorBombasLinea + "," + f + "," + c );
+//        return contadorBombasLinea;
+//        }
+//        
+//        public int getNumBombasLineaArriba(int f, int c) {
+//        int contadorBombasLinea = 0; 
+//        try {
+//            if(cuadricula[f-1][c] == '*') {
+//                contadorBombasLinea++;
+//                
+//            }
+//            
+//        } catch(Exception e) {
+//            
+//        }
+//           System.out.println("Bombas a la arriba:" + contadorBombasLinea + "," + f + "," + c );
+//        return contadorBombasLinea;
+////        tengo que hacer un if
+//        }
+//        public int getNumBombasLineaAbajo(int f, int c) {
+//        int contadorBombasLinea = 0; 
+//        try {
+//            if(cuadricula[f+1][c] == '*') {
+//                contadorBombasLinea++;
+//                
+//            }
+//            
+//        } catch(Exception e) {
+//            
+//        }
+//        
+//           System.out.println("Bombas a la abajo:" + contadorBombasLinea + "," + f + "," + c );
+//        return contadorBombasLinea;
+//    }
+      public int getNumBombasLineas (int f, int c, int incFil, int incCol) {
+        int contadorBombasLinea = 0;
         try {
-            if(cuadricula[f][c+1] == '*') {
+            if(cuadricula[f+incFil][c + incCol] == '*') {
                 contadorBombasLinea++;
-                
             }
         } catch(Exception e) {
-            
-        }
-           System.out.println("Bombas a la derecha:" + contadorBombasLinea + "," + f + "," + c );
+          }
         return contadorBombasLinea;
-//        tengo que hacer un if
     }
-    //lo mismo para todos los lados
-    //meterlo todo n el mismo metodo.
+
 }
             
