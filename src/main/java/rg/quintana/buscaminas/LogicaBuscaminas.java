@@ -20,9 +20,9 @@ public class LogicaBuscaminas {
             int numeroF = random.nextInt(8);
             int numeroC = random.nextInt(8);
             cuadricula[numeroF][numeroC] = '*';
+            
         }
     }
-    
     public void mostrarConsola() {
         for(int f=0; f<8; f++) {
             for(int c=0; c<8; c++) {
@@ -31,66 +31,7 @@ public class LogicaBuscaminas {
             System.out.println("");
         }        
     }
-//    public int getNumBombasLineaDerecha(int f, int c) {
-//        int contadorBombasLinea = 0; 
-//        try {
-//            if(cuadricula[f][c+1] == '*') {
-//                contadorBombasLinea++;
-//                
-//            }
-//            
-//        } catch(Exception e) {
-//            
-//        }
-//           System.out.println("Bombas a la derecha:" + contadorBombasLinea + "," + f + "," + c );
-//        return contadorBombasLinea;
-//    }
-//        public int getNumBombasLineaIzquierda(int f, int c) {
-//        int contadorBombasLinea = 0; 
-//        try {
-//            if(cuadricula[f][c-1] == '*') {
-//                contadorBombasLinea++;
-//                
-//            }
-//            
-//        } catch(Exception e) {
-//            
-//        }
-//           System.out.println("Bombas a la izquierda:" + contadorBombasLinea + "," + f + "," + c );
-//        return contadorBombasLinea;
-//        }
-//        
-//        public int getNumBombasLineaArriba(int f, int c) {
-//        int contadorBombasLinea = 0; 
-//        try {
-//            if(cuadricula[f-1][c] == '*') {
-//                contadorBombasLinea++;
-//                
-//            }
-//            
-//        } catch(Exception e) {
-//            
-//        }
-//           System.out.println("Bombas a la arriba:" + contadorBombasLinea + "," + f + "," + c );
-//        return contadorBombasLinea;
-////        tengo que hacer un if
-//        }
-//        public int getNumBombasLineaAbajo(int f, int c) {
-//        int contadorBombasLinea = 0; 
-//        try {
-//            if(cuadricula[f+1][c] == '*') {
-//                contadorBombasLinea++;
-//                
-//            }
-//            
-//        } catch(Exception e) {
-//            
-//        }
-//        
-//           System.out.println("Bombas a la abajo:" + contadorBombasLinea + "," + f + "," + c );
-//        return contadorBombasLinea;
-//    }
-      public int getNumBombasLineas (int f, int c, int incFil, int incCol) {
+        public int getNumBombasLineas (int f, int c, int incFil, int incCol) {
         int contadorBombasLinea = 0;
         try {
             if(cuadricula[f+incFil][c + incCol] == '*') {
@@ -100,6 +41,37 @@ public class LogicaBuscaminas {
           }
         return contadorBombasLinea;
     }
+        
+       public void getNumeros() {
+            for(int f=0; f<8; f++) {
+                for(int c=0; c<8; c++) {
+    //                mira derecha
+                    int numBombasDerecha = getNumBombasLineas (f,c,0,1);
+    //                mira izquierda
+                    int numBombasIzquierda = getNumBombasLineas (f,c,0,-1);
+    //                mira arriba
+                    int numBombasArriba = getNumBombasLineas (f,c,-1,0);
+    //                mira abajo
+                    int numBombasAbajo = getNumBombasLineas (f,c,1,0);
+    //                mira diag1
+                    int numBombasDiag1 = getNumBombasLineas (f,c,1,1);           
+    //                mira diag2
+                    int numBombasDiag2 = getNumBombasLineas (f,c,1,-1);
+    //                mira diag3
+                    int numBombasDiag3 = getNumBombasLineas (f,c,-1,1);
+    //                mira diag4
+                    int numBombasDiag4 = getNumBombasLineas (f,c,-1,-1);                
+
+                    int sumaBombas = numBombasDerecha+numBombasIzquierda+numBombasArriba+numBombasAbajo+numBombasDiag1+numBombasDiag2+numBombasDiag3+numBombasDiag4;
+                    System.out.println(sumaBombas);
+                    
+                    cuadricula[f][c] = (char)(sumaBombas + '0') ;
+                    
+                }
+            }
+
+       }
 
 }
+
             

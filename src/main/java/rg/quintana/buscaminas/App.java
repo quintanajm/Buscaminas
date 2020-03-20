@@ -45,13 +45,6 @@ public class App extends Application {
                 
                 int sumaBombas = numBombasDerecha+numBombasIzquierda+numBombasArriba+numBombasAbajo+numBombasDiag1+numBombasDiag2+numBombasDiag3+numBombasDiag4;
                 System.out.println(sumaBombas);
-                
-                
-//                int bombasderecha = LogicaBuscaminas.getNumBombasLineaDerecha(f,c);
-//                int bombasizquierda = LogicaBuscaminas.getNumBombasLineaIzquierda(f,c);
-//                int bombasarriba = LogicaBuscaminas.getNumBombasLineaArriba(f,c);
-//                int bombasabajo = LogicaBuscaminas.getNumBombasLineaAbajo(f,c);
-
             }
         }
     }
