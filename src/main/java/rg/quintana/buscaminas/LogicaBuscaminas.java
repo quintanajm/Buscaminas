@@ -20,7 +20,6 @@ public class LogicaBuscaminas {
             int numeroF = random.nextInt(8);
             int numeroC = random.nextInt(8);
             cuadricula[numeroF][numeroC] = '*';
-            
         }
     }
     public void mostrarConsola() {
@@ -45,6 +44,7 @@ public class LogicaBuscaminas {
        public void getNumeros() {
             for(int f=0; f<8; f++) {
                 for(int c=0; c<8; c++) {
+                    if(cuadricula[f][c]!='*'){
     //                mira derecha
                     int numBombasDerecha = getNumBombasLineas (f,c,0,1);
     //                mira izquierda
@@ -66,12 +66,10 @@ public class LogicaBuscaminas {
                     System.out.println(sumaBombas);
                     
                     cuadricula[f][c] = (char)(sumaBombas + '0') ;
-                    
+                    }
                 }
             }
-
        }
-
 }
 
             

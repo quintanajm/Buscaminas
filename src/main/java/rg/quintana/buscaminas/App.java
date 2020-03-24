@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import static rg.quintana.buscaminas.LogicaBuscaminas.cuadricula;
-
+//llamada al numero y mostrar en consola
 /**
  * JavaFX App
  */
@@ -22,31 +22,9 @@ public class App extends Application {
         root.getChildren().add(tablero);
         LogicaBuscaminas LogicaBuscaminas = new LogicaBuscaminas();
         LogicaBuscaminas.mostrarConsola();
-        
-        
-        for(int f=0; f<8; f++) {
-            for(int c=0; c<8; c++) {
-//                mira derecha
-                int numBombasDerecha = LogicaBuscaminas.getNumBombasLineas (f,c,0,1);
-//                mira izquierda
-                int numBombasIzquierda = LogicaBuscaminas.getNumBombasLineas (f,c,0,-1);
-//                mira arriba
-                int numBombasArriba = LogicaBuscaminas.getNumBombasLineas (f,c,-1,0);
-//                mira abajo
-                int numBombasAbajo = LogicaBuscaminas.getNumBombasLineas (f,c,1,0);
-//                mira diag1
-                int numBombasDiag1 = LogicaBuscaminas.getNumBombasLineas (f,c,1,1);           
-//                mira diag2
-                int numBombasDiag2 = LogicaBuscaminas.getNumBombasLineas (f,c,1,-1);
-//                mira diag3
-                int numBombasDiag3 = LogicaBuscaminas.getNumBombasLineas (f,c,-1,1);
-//                mira diag4
-                int numBombasDiag4 = LogicaBuscaminas.getNumBombasLineas (f,c,-1,-1);                
-                
-                int sumaBombas = numBombasDerecha+numBombasIzquierda+numBombasArriba+numBombasAbajo+numBombasDiag1+numBombasDiag2+numBombasDiag3+numBombasDiag4;
-                System.out.println(sumaBombas);
-            }
-        }
+        LogicaBuscaminas.getNumeros();
+        LogicaBuscaminas.mostrarConsola();
+
     }
     
     public static void main(String[] args) {
