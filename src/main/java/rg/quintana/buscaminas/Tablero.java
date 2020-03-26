@@ -1,33 +1,35 @@
-
 package rg.quintana.buscaminas;
 
 import javafx.geometry.Insets;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
+public class Tablero extends GridPane {
 
-public class Tablero extends GridPane{
-    public Tablero(){ 
+    public Tablero() {
         this.setPadding(new Insets(0, 4, 0, 4));
-        for(int c=0;c<8; c++) {
-            for(int r=0;r<8; r++) {
-                this.add(new Casilla(), c, r);
+        for (int c = 0; c < 8; c++) {
+            for (int r = 0; r < 8; r++) {
+                this.add(new Casilla(-1), c, r);
             }
         }
-         this.setOnMouseClicked((MouseEvent mouseEvent) -> {
-            System.out.println("Mouse clicked X,Y: " +
-                    mouseEvent.getX() + " : " + mouseEvent.getY());
-            int clicX = (int)mouseEvent.getX();
+        this.setOnMouseClicked((MouseEvent mouseEvent) -> {
+            System.out.println("Mouse clicked X,Y: "
+                    + mouseEvent.getX() + " : " + mouseEvent.getY());
+            int clicX = (int) mouseEvent.getX();
             int columna = clicX / Casilla.TAM_CASILLA;
             System.out.println("Columna: " + columna);
-            int clicY = (int)mouseEvent.getY();
+            int clicY = (int) mouseEvent.getY();
             int fila = clicY / Casilla.TAM_CASILLA;
-            System.out.println("Fila: " + fila); 
-            DeteccionBomba(clicX,clicY,columna,fila);
+            System.out.println("Fila: " + fila);
+            DeteccionBomba(clicX, clicY, columna, fila);
+//            añadir en fila y columna una casilla del valor que le corresponda(cuadricula)
+            
         });
     }
-    public void DeteccionBomba (int clicX, int clicY, int columna, int fila){
-        if(LogicaBuscaminas.cuadricula[fila][columna]=='*') {
+
+    public void DeteccionBomba(int clicX, int clicY, int columna, int fila) {
+        if (LogicaBuscaminas.cuadricula[fila][columna] == '*') {
             System.out.println("boom");
         }
     }
