@@ -9,7 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-import static rg.quintana.buscaminas.LogicaBuscaminas.cuadricula;
+import static rg.quintana.buscaminas.logicaBuscaminas.cuadricula;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Casilla extends Group {
     Image casilla7 = new Image(getClass().getResourceAsStream("/Images/casilla7.PNG"));
     Image casilla8 = new Image(getClass().getResourceAsStream("/Images/casilla8.PNG"));
 
-    public Casilla(int numeroMinas) {
+    public Casilla(char numeroMinas) {
         ImgCasilla.setFitHeight(TAM_CASILLA);
         ImgCasilla.setFitWidth(TAM_CASILLA);
         Rectangle rectCasillaSinLev = new Rectangle();
@@ -40,40 +40,41 @@ public class Casilla extends Group {
         this.getChildren().add(ImgCasilla);
 
 //        casillaNormal
-        if (numeroMinas == -1) {
+        if (numeroMinas == '.') {
             ImgCasilla.setImage(casillaImg);
         }
 //        casillaBomba
-        if (numeroMinas == 9) {
+        if (numeroMinas == '*') {
             ImgCasilla.setImage(casillaBomba);
         }
-        if (numeroMinas == 0) {
+        if (numeroMinas == '0') {
             ImgCasilla.setImage(casilla0);
         }
-        if (numeroMinas == 1) {
+        if (numeroMinas == '1') {
             ImgCasilla.setImage(casilla1);
         }
-        if (numeroMinas == 2) {
+        if (numeroMinas == '2') {
             ImgCasilla.setImage(casilla2);
         }
-        if (numeroMinas == 3) {
+        if (numeroMinas == '3') {
             ImgCasilla.setImage(casilla3);
         }
-        if (numeroMinas == 4) {
+        if (numeroMinas == '4') {
             ImgCasilla.setImage(casilla4);
         }
-        if (numeroMinas == 5) {
+        if (numeroMinas == '5') {
             ImgCasilla.setImage(casilla5);
         }
-        if (numeroMinas == 6) {
+        if (numeroMinas == '6') {
             ImgCasilla.setImage(casilla6);
         }
-        if (numeroMinas == 7) {
+        if (numeroMinas == '7') {
             ImgCasilla.setImage(casilla7);
         }
-        if (numeroMinas == 8) {
+        if (numeroMinas == '8') {
             ImgCasilla.setImage(casilla8);
         }
+        
 
     }
 
