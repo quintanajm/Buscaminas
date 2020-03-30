@@ -9,7 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-import static rg.quintana.buscaminas.logicaBuscaminas.cuadricula;
+import static rg.quintana.buscaminas.logicBuscaminas.cuadricula;
 
 /**
  *
@@ -30,6 +30,7 @@ public class Casilla extends Group {
     Image casilla6 = new Image(getClass().getResourceAsStream("/Images/casilla6.PNG"));
     Image casilla7 = new Image(getClass().getResourceAsStream("/Images/casilla7.PNG"));
     Image casilla8 = new Image(getClass().getResourceAsStream("/Images/casilla8.PNG"));
+    Image casillaSeleccionada = new Image(getClass().getResourceAsStream("/Images/casillaSeleccionada.PNG"));
 
     public Casilla(char numeroMinas) {
         ImgCasilla.setFitHeight(TAM_CASILLA);
@@ -73,6 +74,9 @@ public class Casilla extends Group {
         }
         if (numeroMinas == '8') {
             ImgCasilla.setImage(casilla8);
+        }
+        if (numeroMinas == '9') {
+            ImgCasilla.setImage(casillaSeleccionada);
         }
         
 

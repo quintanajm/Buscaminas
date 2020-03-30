@@ -1,16 +1,24 @@
 package rg.quintana.buscaminas;
 
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class Tablero extends GridPane {
+
+    int timersec = 0;
+    int timermin = 0;
+    int timerhr = 0;
 
     public Tablero() {
         this.setPadding(new Insets(0, 4, 0, 4));
@@ -29,18 +37,21 @@ public class Tablero extends GridPane {
             int fila = clicY / Casilla.TAM_CASILLA;
             System.out.println("Fila: " + fila);
 
-            this.add(new Casilla(logicaBuscaminas.cuadricula[fila][columna]), columna, fila);
-            DeteccionBomba(clicX, clicY, columna, fila);
+            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                this.add(new Casilla(logicBuscaminas.cuadricula[fila][columna]), columna, fila);
+                DeteccionBomba(clicX, clicY, columna, fila);
+            } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                this.add(new Casilla('9'), columna, fila);
+            }
 
 //            añadir en fila y columna una casilla del valor que le corresponda(cuadricula)
         });
     }
 
     public void DeteccionBomba(int clicX, int clicY, int columna, int fila) {
-        if (logicaBuscaminas.cuadricula[fila][columna] == '*') {
+        if (logicBuscaminas.cuadricula[fila][columna] == '*') {
             System.out.println("boom");
             Alert alert = new Alert(AlertType.CONFIRMATION);
-
             alert.setTitle(null);
             alert.setHeaderText("Oh, has pulsado una bomba");
             alert.setContentText("Elige una opción");
@@ -61,20 +72,69 @@ public class Tablero extends GridPane {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne) {
+                logicBuscaminas logicBuscaminas = new logicBuscaminas();
                 this.setPadding(new Insets(0, 4, 0, 4));
                 for (int c = 0; c < 8; c++) {
                     for (int r = 0; r < 8; r++) {
                         this.add(new Casilla('.'), c, r);
+                        System.out.println();
                     }
                 }
+                
+
+//                
             } else {
-                // ... user chose CANCEL or closed the dialog
+                // ... usar opción SALIR 
             }
 
         }
     }
 
-}
+    public void startTime() {
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
 
-//si hace bomba click en bomba que haga boom
-//hacer click con el derecho que hay que pintar la bandera
+            @Override
+            public void run() {
+
+                timersec++;
+
+                Platform.runLater(new Runnable() {
+                    public void run() {
+
+                        if (timersec == 60) {
+                            timersec = 0;
+                            timermin++;
+                        }
+                        if (timermin == 60) {
+                            timermin = 0;
+                            timerhr++;
+                        }
+
+                        String seconds = Integer.toString(timersec);
+                        String minutes = Integer.toString(timermin);
+                        String hours = Integer.toString(timerhr);
+
+                        if (timersec <= 9) {
+                            seconds = "0" + Integer.toString(timersec);
+                        }
+                        if (timermin <= 9) {
+                            minutes = "0" + Integer.toString(timermin);
+                        }
+                        if (timerhr <= 9) {
+                            hours = "0" + Integer.toString(timerhr);
+                        }
+//                        time.setText(hours + ":" + minutes + ":" + seconds);
+//                        System.out.println(time.getText());
+                    }
+
+                });
+
+            }
+
+        };
+        timer.schedule(timerTask, 50, 50); //lastone is time, milli second
+
+    }
+
+}
