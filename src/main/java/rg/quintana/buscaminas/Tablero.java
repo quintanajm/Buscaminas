@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -19,8 +20,13 @@ public class Tablero extends GridPane {
     int timersec = 0;
     int timermin = 0;
     int timerhr = 0;
+    Label labelTiemp;
+    final int DELAY = 1000;
+    final int PERIOD = 1000;
 
-    public Tablero() {
+
+    public Tablero(Label labelTiemp) {
+        this.labelTiemp= labelTiemp;
         this.setPadding(new Insets(0, 4, 0, 4));
         for (int c = 0; c < 8; c++) {
             for (int r = 0; r < 8; r++) {
@@ -53,8 +59,8 @@ public class Tablero extends GridPane {
             System.out.println("boom");
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle(null);
-            alert.setHeaderText("Oh, has pulsado una bomba");
-            alert.setContentText("Elige una opción");
+            alert.setHeaderText("GAME OVER, you hit a bomb");
+            alert.setContentText("Choose an option");
 
             // Crear un icono para la imagen de alerta
             ImageView icon = new ImageView("/Images/casillaBomba.PNG");
@@ -63,26 +69,29 @@ public class Tablero extends GridPane {
             // Cambiar la imagen
             alert.getDialogPane().setGraphic(icon);
 
-            ButtonType buttonTypeOne = new ButtonType("Jugar de nuevo");
+            ButtonType buttonTypeOne = new ButtonType("Play again");
 //            ButtonType buttonTypeTwo = new ButtonType("Salir");
 
-            ButtonType buttonTypeCancel = new ButtonType("Salir", ButtonData.CANCEL_CLOSE);
+            ButtonType buttonTypeCancel = new ButtonType("Exit", ButtonData.CANCEL_CLOSE);
 
             alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne) {
                 logicBuscaminas logicBuscaminas = new logicBuscaminas();
+                this.getChildren().clear();
                 this.setPadding(new Insets(0, 4, 0, 4));
                 for (int c = 0; c < 8; c++) {
                     for (int r = 0; r < 8; r++) {
                         this.add(new Casilla('.'), c, r);
-                        System.out.println();
+
                     }
                 }
+                logicBuscaminas.mostrarConsola();
+                logicBuscaminas.getNumBombasLineas(fila, fila, fila, clicY);
+                logicBuscaminas.getNumeros();
+                System.out.println();
                 
-
-//                
             } else {
                 // ... usar opción SALIR 
             }
@@ -124,8 +133,8 @@ public class Tablero extends GridPane {
                         if (timerhr <= 9) {
                             hours = "0" + Integer.toString(timerhr);
                         }
-//                        time.setText(hours + ":" + minutes + ":" + seconds);
-//                        System.out.println(time.getText());
+                        labelTiemp.setText("Time: " + hours + ":" + minutes + ":" + seconds);
+                        System.out.println(labelTiemp.getText());
                     }
 
                 });
@@ -133,7 +142,10 @@ public class Tablero extends GridPane {
             }
 
         };
-        timer.schedule(timerTask, 50, 50); //lastone is time, milli second
+        timer.schedule(timerTask, DELAY, PERIOD); // (TimerTask task,long delay,long period)
+//        delay =  Este es el retraso en milisegundos antes de que se ejecute la tarea.
+//        period = Este es el tiempo en milisegundos entre ejecuciones de tareas sucesivas.
+
 
     }
 

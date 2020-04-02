@@ -1,10 +1,13 @@
 package rg.quintana.buscaminas;
 
+import java.util.Timer;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import static rg.quintana.buscaminas.logicBuscaminas.cuadricula;
 //llamada al numero y mostrar en consola
 /**
  * JavaFX App
@@ -18,12 +21,34 @@ public class App extends Application {
         var scene = new Scene(root,250,280);
         stage.setScene(scene);
         stage.show();
-        Tablero tablero = new Tablero ();
-        root.getChildren().add(tablero);
+        
+        VBox vbox = new VBox();
+        Label labelTiempo = new Label ();
+        labelTiempo.setText("Time:");
+        vbox.setAlignment(Pos.CENTER);
+        vbox.getChildren().add(labelTiempo);
+        
+        
+        
+        Tablero tablero = new Tablero (labelTiempo);
+        Timer timer = new Timer();
+        
+        tablero.startTime();
+        
+        vbox.getChildren().add(tablero);
+        root.getChildren().add(vbox);
+
+
+
+//        root.getChildren().add(tablero);
+
         logicBuscaminas LogicaBuscaminas = new logicBuscaminas();
-        LogicaBuscaminas.mostrarConsola();
+//        LogicaBuscaminas.mostrarConsola();
         LogicaBuscaminas.getNumeros();
         LogicaBuscaminas.mostrarConsola();
+
+        
+
 
     }
     
@@ -32,4 +57,3 @@ public class App extends Application {
     }
     
 }
-//el valor que me de la suma lo teno que guardar en la posicion de la matriz

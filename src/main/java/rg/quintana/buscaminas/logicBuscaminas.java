@@ -19,7 +19,7 @@ public class logicBuscaminas {
             int numeroC = random.nextInt(8);
             cuadricula[numeroF][numeroC] = '*';
         }
-    }
+    }   
 
     public void mostrarConsola() {
         for (int f = 0; f < 8; f++) {
