@@ -24,7 +24,7 @@ public class App extends Application {
         
         VBox vbox = new VBox();
         Label labelTiempo = new Label ();
-        labelTiempo.setText("Time:");
+        labelTiempo.setText("Time");
         vbox.setAlignment(Pos.CENTER);
         vbox.getChildren().add(labelTiempo);
         
@@ -46,6 +46,7 @@ public class App extends Application {
 //        LogicaBuscaminas.mostrarConsola();
         LogicaBuscaminas.getNumeros();
         LogicaBuscaminas.mostrarConsola();
+ 
 
         
 

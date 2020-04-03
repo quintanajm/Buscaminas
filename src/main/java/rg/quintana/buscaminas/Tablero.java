@@ -49,6 +49,7 @@ public class Tablero extends GridPane {
             } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 this.add(new Casilla('9'), columna, fila);
             }
+            
 
 //            añadir en fila y columna una casilla del valor que le corresponda(cuadricula)
         });
@@ -59,7 +60,7 @@ public class Tablero extends GridPane {
             System.out.println("boom");
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle(null);
-            alert.setHeaderText("GAME OVER, you hit a bomb");
+            alert.setHeaderText("GAME OVER, you hit a bomb!");
             alert.setContentText("Choose an option");
 
             // Crear un icono para la imagen de alerta
@@ -91,6 +92,7 @@ public class Tablero extends GridPane {
                 logicBuscaminas.getNumBombasLineas(fila, fila, fila, clicY);
                 logicBuscaminas.getNumeros();
                 System.out.println();
+                
                 
             } else {
                 // ... usar opción SALIR 
@@ -133,8 +135,8 @@ public class Tablero extends GridPane {
                         if (timerhr <= 9) {
                             hours = "0" + Integer.toString(timerhr);
                         }
-                        labelTiemp.setText("Time: " + hours + ":" + minutes + ":" + seconds);
-                        System.out.println(labelTiemp.getText());
+                        labelTiemp.setText(hours + ":" + minutes + ":" + seconds);
+//                        System.out.println(labelTiemp.getText());
                     }
 
                 });

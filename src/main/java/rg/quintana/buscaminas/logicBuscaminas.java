@@ -5,6 +5,10 @@ import java.util.Random;
 public class logicBuscaminas {
 
     static char[][] cuadricula = new char[8][8];
+    int contadorCasillasLevantas = 0;
+    int estado = 1;  //victoria
+    static char[][] visible = new char[8][8]; //0 tapado, 1 descubierto
+    int casillasVistas = 0;
 
     public logicBuscaminas() {
         for (int f = 0; f < 8; f++) {
@@ -17,9 +21,19 @@ public class logicBuscaminas {
             Random random = new Random();
             int numeroF = random.nextInt(8);
             int numeroC = random.nextInt(8);
+
+            while (cuadricula[numeroF][numeroC] == '*') {
+//                genera otra fila y columna
+                numeroF = random.nextInt(8);
+                numeroC = random.nextInt(8);
+            }
             cuadricula[numeroF][numeroC] = '*';
+//            repetir la generación de la fila y la columna mientras en esa posicion haya una mina
+
         }
-    }   
+
+    }
+//contar cuantas casillas hay que no tiene mina
 
     public void mostrarConsola() {
         for (int f = 0; f < 8; f++) {
@@ -67,6 +81,19 @@ public class logicBuscaminas {
 
                     cuadricula[f][c] = (char) (sumaBombas + '0');
                 }
+            }
+        }
+    }
+
+    public void clicCasilla(int f, int c) {
+        //Si la casilla esta tapada
+        if (visible[f][c] == 0) {
+            //abre la casilla
+            visible[f][c] = 1;
+            casillasVistas++;
+            if (casillasVistas == 1) {
+                //Si llega a 54 casillas descubiertas gana
+                System.out.println("VIctoria");
             }
         }
     }
