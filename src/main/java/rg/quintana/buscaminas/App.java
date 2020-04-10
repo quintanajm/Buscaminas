@@ -31,6 +31,7 @@ public class App extends Application {
         
         
         Tablero tablero = new Tablero (labelTiempo);
+//        llamo el objeto timer para agruparlo al vbox
         Timer timer = new Timer();
         
         tablero.startTime();
@@ -39,18 +40,9 @@ public class App extends Application {
         root.getChildren().add(vbox);
 
 
-
-//        root.getChildren().add(tablero);
-
         logicBuscaminas LogicaBuscaminas = new logicBuscaminas();
-//        LogicaBuscaminas.mostrarConsola();
         LogicaBuscaminas.getNumeros();
         LogicaBuscaminas.mostrarConsola();
- 
-
-        
-
-
     }
     
     public static void main(String[] args) {

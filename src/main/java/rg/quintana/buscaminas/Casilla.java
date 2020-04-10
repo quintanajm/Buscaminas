@@ -82,6 +82,6 @@ public class Casilla extends Group {
 
     }
 
-//    crear un método que permita cambiar la imagen de la casilla, pasándole por parametros el número de minas
-//    cambiar la imagen al imageview
+//    creo un método que permita cambiar la imagen de la casilla, pasándole por parametros el número de minas
+//    cambio la imagen al imageview
 }
